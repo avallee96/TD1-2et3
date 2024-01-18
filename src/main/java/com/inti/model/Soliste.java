@@ -1,13 +1,18 @@
 package com.inti.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 /**
  * 
@@ -35,6 +40,12 @@ public class Soliste {
 	
 	@Column(name = "nationalite", length = 50)
 	private String nationalite;
+	
+	@ManyToMany
+    @JoinTable( name = "Oeuvre_Soliste_Associations",
+                joinColumns = @JoinColumn(name = "num_Soliste" ),
+                inverseJoinColumns = @JoinColumn(name = "num_Oeuvre" ) )
+    private List<Oeuvre> oeuvres = new ArrayList<>();
 
 	public Soliste() {
 		super();

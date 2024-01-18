@@ -47,9 +47,11 @@ public class SolisteController {
 		return "redirect:affichageSolistes";
 	}
 	
-	@PutMapping("updateSoliste")
+	@PostMapping("updateSoliste")
 	public String updateSoliste(@ModelAttribute("soliste") Soliste soliste) {
-		solisteServiceImpl.saveSoliste(soliste);
+		System.out.println(soliste.getNum());
+		System.out.println(soliste.getPrenom());
+		solisteServiceImpl.updateSoliste(soliste);
 		return "redirect:affichageSolistes";
 	}
 	

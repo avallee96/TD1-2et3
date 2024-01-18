@@ -1,11 +1,18 @@
 package com.inti.model;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 /**
  * 
@@ -26,19 +33,25 @@ public class Oeuvre {
 	private String nom;
 	
 	@Column(name="duree")
-	private long duree;
+	private LocalTime duree;
+	
+	@ManyToMany
+    @JoinTable( name = "Oeuvre_Soliste_Associations",
+                joinColumns = @JoinColumn(name = "num_Oeuvre" ),
+                inverseJoinColumns = @JoinColumn(name = "num_Soliste" ) )
+    private List<Soliste> solistes = new ArrayList<>();
 
 	public Oeuvre() {
 		super();
 	}
 
-	public Oeuvre(String nom, long duree) {
+	public Oeuvre(String nom, LocalTime duree) {
 		super();
 		this.nom = nom;
 		this.duree = duree;
 	}
 
-	public Oeuvre(Long num, String nom, long duree) {
+	public Oeuvre(Long num, String nom, LocalTime duree) {
 		super();
 		this.num = num;
 		this.nom = nom;
@@ -61,11 +74,11 @@ public class Oeuvre {
 		this.nom = nom;
 	}
 
-	public long getDuree() {
+	public LocalTime getDuree() {
 		return duree;
 	}
 
-	public void setDuree(long duree) {
+	public void setDuree(LocalTime duree) {
 		this.duree = duree;
 	}
 

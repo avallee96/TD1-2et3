@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>affichage d'un soliste</title>
+</head>
+<body>
+	<p th:text="'id : ' + ${soliste.num}"></p>
+	<p th:text="'nom : ' + ${soliste.nom}"></p>
+	<p th:text="'prénom : ' + ${soliste.prenom}"></p>
+	<p th:text="'date de naissance : ' + ${soliste.dateNaissance}"></p>
+	<p th:text="'nationalité : ' + ${soliste.nationalite}"></p>
+</body>
+</html>
